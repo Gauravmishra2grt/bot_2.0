@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+  --bg-void: #0a0a0f;
+  --bg-surface: #111118;
+  --bg-elevated: #1a1a24;
+  --bg-panel: #16161f;
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-active: rgba(255,255,255,0.15);
+  --accent-primary: #7c6aff;
+  --accent-glow: rgba(124,106,255,0.25);
+  --accent-secondary: #ff6ab0;
+  --text-primary: #f0eeff;
+  --text-secondary: #8b85a8;
+  --text-muted: #4a4662;
+  --bubble-user-bg: linear-gradient(135deg, #7c6aff 0%, #a855f7 100%);
+  --bubble-bot-bg: #1e1e2e;
+  --shadow-float: 0 24px 64px rgba(0,0,0,0.6);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: 'DM Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,106,255,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 90% 80%, rgba(255,106,176,0.07) 0%, transparent 50%),
+    var(--bg-void);
+}
