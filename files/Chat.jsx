@@ -79,7 +79,7 @@ export default function Chat() {
     setIsTyping(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/chat", {
+      const res = await fetch("https://bot-2-0-9pqh.onrender.com/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
