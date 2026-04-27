@@ -1,10 +1,26 @@
 import groq from "../config/groqClient.js";
 
 export const getChatResponse = async (messages) => {
-  const response = await groq.chat.completions.create({
-    model: "llama-3.1-8b-instant",
-    messages,
-  });
+  try {
+    console.log("Sending to Groq:", messages);
 
-  return response.choices[0].message.content;
+    const response = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
+      messages,
+    });
+
+    const reply = response?.choices?.[0]?.message?.content;
+
+    if (!reply) {
+      throw new Error("No response from Groq API");
+    }
+
+    console.log("Groq Reply:", reply);
+
+    return reply;
+
+  } catch (error) {
+    console.error("Groq Service Error:", error);
+    throw error;
+  }
 };

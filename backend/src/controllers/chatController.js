@@ -2,23 +2,26 @@ import { getChatResponse } from "../services/groqService.js";
 
 export const handleChat = async (req, res) => {
   try {
+    console.log("BODY:", req.body);
+
     const { messages } = req.body;
 
-    if (!messages) {
-      return res.status(400).json({ error: "Messages required" });
+    // ✅ better validation
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return res.status(400).json({ error: "Valid messages required" });
     }
 
     const reply = await getChatResponse(messages);
 
-    res.json({ reply });
+    console.log("REPLY:", reply);
+
+    return res.json({ reply });
+
   } catch (error) {
     console.error("Groq Error:", error);
-    const status = error?.status || error?.response?.status || 500;
-    const message =
-      error?.message ||
-      error?.error?.message ||
-      "Failed to fetch response";
 
-    res.status(status).json({ error: message });
+    return res.status(500).json({
+      error: error?.message || "Failed to fetch response",
+    });
   }
 };
